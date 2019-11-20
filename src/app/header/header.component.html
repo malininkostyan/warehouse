@@ -4,7 +4,7 @@
         <nav>
           <button class="name" routerLink="/main" >Главная</button>
           <div class="dropdown">
-              <button class="dropbtn">Категории товаров</button>
+              <button class="dropbtn" routerLink="/category" >Категории товаров</button>
               <div class="dropdown-content">
                 <a routerLink="">Бакалея Консервы</a>
                 <a routerLink="">Весовое печенье, пирожное</a>
@@ -17,8 +17,8 @@
               </div>
             </div>
               <button class="name" routerLink="/delivery">Доставка и оплата</button>
-              <button class="name" routerLink="/discount">Акции</button>
               <button class="name" routerLink="/contacts">Контакты</button>
-              <button class="name" routerLink="/about_us">О нас</button>     
+              <button class="name" routerLink="/about_us">О нас</button> 
+              <button class="name" (click)="buttonLoginLogoutClick()"  [textContent]="isAuthed ? 'Выйти' : 'Войти'"></button>
           </nav>
         </div>

@@ -1,30 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { HeadComponent } from './head/head.component';
 import { MainComponent } from './main/main.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { DiscountComponent } from './discount/discount.component';
-import { MenuComponent } from './menu/menu.component';
+import { HeaderComponent } from './header/header.component';
+import { ContactsComponent } from './contacts/contacts.component';
+//import { MenuComponent } from './menu/menu.component';
 import { DeliveryComponent } from './delivery/delivery.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import {HttpClientModule} from '@angular/common/http'
+import { AdminComponent } from './admin/admin.component';
+import { AuthComponent } from './auth/auth.component';
+import { RegComponent } from './reg/reg.component';
+import { FormsModule } from '@angular/forms'
+import { AuthCookie } from './auth-cookies-handler';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent,
-    HeadComponent,
     MainComponent,
+    HeaderComponent,
     AboutUsComponent,
-    DiscountComponent,
-    MenuComponent,
-    DeliveryComponent
+  //  MenuComponent,
+    DeliveryComponent,
+    ContactsComponent,
+    AdminComponent,
+    AuthComponent,
+    RegComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    AuthCookie
   ],
   providers: [],
   bootstrap: [AppComponent]

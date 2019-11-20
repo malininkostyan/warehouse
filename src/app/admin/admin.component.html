@@ -1,0 +1,33 @@
+<div class="textUnderHeader">
+    <br>
+    <input [(ngModel)]="product.category" type="text" placeholder="category">
+    <input [(ngModel)]="product.price" type="text" placeholder="price">
+    <input [(ngModel)]="product.description" type="text" placeholder="description">
+    <input [(ngModel)]="product.url" type="text" placeholder="url">
+    <button (click)="buttonCreateUpdateClick()" [textContent]="isUpdate ? 'Изменить' : 'Добавить'"></button>
+    <br>
+
+    <table rules="all" class="productsTable">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>category</th>
+                <th>price</th>
+                <th>description</th>
+                <th>url</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tr *ngFor="let product of products">
+            <td>{{product.id}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.url}}</td>
+            <td>
+                <button (click)="buttonLoadUpdateClick(product.id)">Обновить</button>
+                <button (click)="buttonDeleteClick(product.id)">Удалить</button>
+            </td>
+        </tr>
+    </table>
+</div>
