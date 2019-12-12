@@ -14,6 +14,8 @@ import { AuthComponent } from './auth/auth.component';
 import { RegComponent } from './reg/reg.component';
 import { FormsModule } from '@angular/forms'
 import { AuthCookie } from './auth-cookies-handler';
+import { ActivateGuard } from './activate-guard';
+import { FilesComponent } from './files/files.component';
 
 
 @NgModule({
@@ -27,14 +29,16 @@ import { AuthCookie } from './auth-cookies-handler';
     ContactsComponent,
     AdminComponent,
     AuthComponent,
-    RegComponent
+    RegComponent,
+    FilesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    AuthCookie
+    AuthCookie,
+    ActivateGuard
   ],
   providers: [],
   bootstrap: [AppComponent]

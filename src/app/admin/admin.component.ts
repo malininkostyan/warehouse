@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class AdminComponent implements OnInit {
 
   products: Product[] = [];
-
   isUpdate: boolean = false;
   product: Product = new Product();
 
@@ -26,7 +25,7 @@ export class AdminComponent implements OnInit {
     if (!this._authCookie.getAuth()) {
       return this.router.navigate(["/"]);
     }
-    this.httpClient.post(`${this.way}/category`, {token: this._authCookie.getAuth(), pageName: "admin"}, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${this.way}/category`, `data=${JSON.stringify({token: this._authCookie.getAuth(), pageName: "admin"})}`, this.options).subscribe((result: any) => {
       if (result) {
         this.products = result;
       }
@@ -46,10 +45,7 @@ export class AdminComponent implements OnInit {
   }
 
   Create(){
-    console.log(this.product);
-    this.httpClient.post(`http://localhost:3001/category/create`,{token: this._authCookie.getAuth(), data: this.product},  this.options).subscribe((result: any) => {
-      console.log(result);
-
+    this.httpClient.post(`${this.way}/category/create`,`data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`,  this.options).subscribe((result: any) => {
       if (!result) return;
       this.products.push({id: result.id, category: result.category, price: result.price, description: result.description, url: result.url});
     });
@@ -61,7 +57,9 @@ export class AdminComponent implements OnInit {
   }
 
   Update() {
-    this.httpClient.post(`${this.way}/category/update`, {token: this._authCookie.getAuth(), data: this.product}, this.options).subscribe((result: any) => {
+    console.log(this.product);
+    this.httpClient.post(`${this.way}/category/update`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`, this.options).subscribe((result: any) => {
+      console.log("RESULT");
       if (!result) return;
       let productsIndex = this.products.findIndex(x => x.id == result.id);
       if (productsIndex == -1) return;
@@ -72,9 +70,9 @@ export class AdminComponent implements OnInit {
   }
   
   buttonDeleteClick(id: number) {
-    this.httpClient.post(`${this.way}/category/delete`, {token: this._authCookie.getAuth(), data: {
+    this.httpClient.post(`${this.way}/category/delete`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: {
       id: id
-    }}, this.options).subscribe((result: any) => {
+    }})}`, this.options).subscribe((result: any) => {
       if (result) {
         let productsIndex = this.products.findIndex(x => x.id == id);
         if (productsIndex == -1) return;
@@ -82,4 +80,5 @@ export class AdminComponent implements OnInit {
       }
     });
   }
+
 }

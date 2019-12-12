@@ -25,14 +25,14 @@ export class AuthComponent implements OnInit {
   }
 
   buttonLoginClick() {
-    this.httpClient.post(`http://localhost:3001/login`, {
+    this.httpClient.post(`http://localhost:3001/login`, `data=${JSON.stringify({
       login: this.login,
       password: this.password
-    }, this.options).subscribe((result: any) => {
+    })}`, this.options).subscribe((result: any) => {
       if (!result) return;
       this._authCookie.setAuth(result.token);
+      this._authCookie.setAdmin(result.isAdmin);
       this.router.navigate(["/"]);
     });
   }
-
 }

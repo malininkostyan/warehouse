@@ -20,7 +20,7 @@ export class CategoryComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.httpClient.post('http://localhost:3001/category', {token: this._authCookie.getAuth(), pageName: "category"}, this.options).subscribe((result: any) => {
+    this.httpClient.post('http://localhost:3001/category', `data=${JSON.stringify({token: this._authCookie.getAuth(), pageName: 'category'})}`, this.options).subscribe((result: any) => {
       if (result) {
         this.products = result;
         let categories = [];
@@ -48,8 +48,6 @@ export class CategoryComponent implements OnInit {
       else {
         this.router.navigate(["/"]);
       }
-      
-      console.log(this.productsView);
     });
   }
 }
