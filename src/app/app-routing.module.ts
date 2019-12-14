@@ -11,7 +11,7 @@ import { ActivateGuard } from './activate-guard';
 import { FilesComponent} from './files/files.component';
 
 const routes: Routes = [
-  {path: 'admin', component: AdminComponent, canActivate: [ActivateGuard]},
+  {path:'admin', component: AdminComponent, canActivate: [ActivateGuard]},
   {path:'main', component:MainComponent},
   {path:'contacts', component:ContactsComponent},
   {path:'category', loadChildren: './category/category.module#CategoryModule'},
@@ -19,8 +19,10 @@ const routes: Routes = [
   {path:'delivery', component:DeliveryComponent},
   {path:'reg', component:RegComponent},
   {path:'auth', component:AuthComponent},
-  {path:'', redirectTo:'/main',  pathMatch:'full'},
-  {path:'files', component:FilesComponent}
+  {path:'files', component:FilesComponent},
+  {path:'**', redirectTo:'/main',  pathMatch:'full'},
+  {path:'', component:MainComponent}
+
 
 ];
 
