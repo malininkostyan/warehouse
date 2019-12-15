@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms'
 import { AuthCookie } from './auth-cookies-handler';
 import { ActivateGuard } from './activate-guard';
 import { FilesComponent } from './files/files.component';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FilesComponent } from './files/files.component';
     AdminComponent,
     AuthComponent,
     RegComponent,
-    FilesComponent
+    FilesComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
