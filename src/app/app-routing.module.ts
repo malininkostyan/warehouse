@@ -9,13 +9,12 @@ import { AuthComponent } from './auth/auth.component';
 import {AdminComponent} from './admin/admin.component';
 import { ActivateGuard } from './activate-guard';
 import { FilesComponent} from './files/files.component';
-import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
-  {path:'admin', component: AdminComponent, canActivate: [ActivateGuard]},
+  {path:'admin', component: AdminComponent},
   {path:'main', component:MainComponent},
   {path:'contacts', component:ContactsComponent},
-  {path:'category', component:CategoryComponent},
+  {path:'category', loadChildren: './category/category.module#CategoryModule'},
   {path:'about_us', component:AboutUsComponent},
   {path:'delivery', component:DeliveryComponent},
   {path:'reg', component:RegComponent},
