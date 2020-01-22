@@ -1,13 +1,16 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { wayWS } from './config';
 
 @Injectable()
 export class WebSocketService {
 
   private _message: string;
 
-  private _webSocketContext = new WebSocket('ws://localhost:3002');
+  private _webSocketContext = new WebSocket(wayWS);
 
-  constructor() { }
+  constructor() {
+  }
+
   get webSocketContext(): WebSocket {
     return this._webSocketContext;
   }
@@ -23,4 +26,4 @@ export class WebSocketService {
   set message(value: string) {
     this._message = value;
   }
-}
+} 

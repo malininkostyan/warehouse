@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms'
 import { AuthCookie } from './auth-cookies-handler';
 import { ActivateGuard } from './activate-guard';
 import { FilesComponent } from './files/files.component';
+import { WebSocketService } from './web-socket';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { FilesComponent } from './files/files.component';
     AuthCookie,
     ActivateGuard
   ],
-  providers: [],
+  providers: [WebSocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

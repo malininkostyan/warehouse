@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Product } from '../category/Product';
 import { AuthCookie } from '../auth-cookies-handler';
 import { Router } from '@angular/router';
+import { way } from '../config';
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +17,6 @@ export class AdminComponent implements OnInit {
   product: Product = new Product();
 
   constructor(private router: Router, private httpClient: HttpClient, private _authCookie: AuthCookie) { }
-  way = "http://localhost:3001";
   options = {
     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
   };
@@ -25,7 +25,7 @@ export class AdminComponent implements OnInit {
     if (!this._authCookie.getAuth()) {
       return this.router.navigate(["/"]);
     }
-    this.httpClient.post(`${this.way}/category`, `data=${JSON.stringify({token: this._authCookie.getAuth(), pageName: "admin"})}`, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/category`, `data=${JSON.stringify({token: this._authCookie.getAuth()})}`, this.options).subscribe((result: any) => {
       if (result) {
         this.products = result;
       }
@@ -45,9 +45,10 @@ export class AdminComponent implements OnInit {
   }
 
   Create(){
-    this.httpClient.post(`${this.way}/category/create`,`data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`,  this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/category/create`,`data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`,  this.options).subscribe((result: any) => {
       if (!result) return;
       this.products.push({id: result.id, category: result.category, price: result.price, description: result.description, url: result.url});
+      this.product = new Product();
     });
   }
 
@@ -58,7 +59,7 @@ export class AdminComponent implements OnInit {
 
   Update() {
     console.log(this.product);
-    this.httpClient.post(`${this.way}/category/update`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`, this.options).subscribe((result: any) => {
+    this.httpClient.post(`${way}/category/update`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: this.product})}`, this.options).subscribe((result: any) => {
       console.log("RESULT");
       if (!result) return;
       let productsIndex = this.products.findIndex(x => x.id == result.id);
@@ -70,7 +71,7 @@ export class AdminComponent implements OnInit {
   }
   
   buttonDeleteClick(id: number) {
-    this.httpClient.post(`${this.way}/category/delete`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: {
+    this.httpClient.post(`${way}/category/delete`, `data=${JSON.stringify({token: this._authCookie.getAuth(), data: {
       id: id
     }})}`, this.options).subscribe((result: any) => {
       if (result) {

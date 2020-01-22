@@ -2,6 +2,7 @@
 <div class="content" role="main">
     <h1 style="padding: 10px; font-family: 'Times New Roman', Times, serif;">Категории</h1>
     <input [(ngModel)]="findText" type="text">
+    <input class="search" placeholder="Сообщение :" [(ngModel)]="this.message">
     <table>
         <tr *ngFor="let productsByCategory of productsView">
             <td>
